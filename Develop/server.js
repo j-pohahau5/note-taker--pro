@@ -81,6 +81,12 @@ app.post("/api/notes", (req, res) => {
     }
 });
 
+// this delete taking in the route to id from /api/notes/:id
+app.delete("/api/notes/:id", (req, res) => {
+    console.log("delete")
+    var id = req.params.id
+    
+})
 
 
 // * this means anything
