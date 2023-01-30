@@ -83,8 +83,34 @@ app.post("/api/notes", (req, res) => {
 
 // this delete taking in the route to id from /api/notes/:id
 app.delete("/api/notes/:id", (req, res) => {
-    console.log("delete")
+    console.log("delete");
+    // giving id the value fo requesting the parameters id
     var id = req.params.id
+    // reading the file db.json
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        // if there is an error then console log it
+        if (err) {
+          console.error(err);
+        } else {
+          // letting parsedNoted equal the object of data
+          let parsedNotes = JSON.parse(data);
+          // filtering parsedNotes by the notes_id 
+          parsedNotes = parsedNotes.filter((note) => {
+          // returning  if notes_id is equal to id then it is true
+            return note.note_id === id
+          });
+            // rewriting the file db.json with the deleted notes taken out
+          fs.writeFile(
+              './db/db.json',
+            JSON.stringify(parsedNotes, null, 4),
+            (writeErr) =>
+              writeErr
+                ? console.error(writeErr)
+                : console.log("successfully deleted note!")
+          );
+        }
+    });
+    
     
 })
 
