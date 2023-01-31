@@ -1,13 +1,22 @@
 const notes = require('express').Router();
 const fs = require("fs");
 const uuid = require("../helpers/uuid");
-let db = require("../db/db.json");
 
 
 // api/notes
 notes.get("/", (req, res) => {
   //    fs.read('./db/db.json',)
-  res.json(db);
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        return res.json([]);
+      } else {
+        const parsedNotes = JSON.parse(data);
+        return res.json(parsedNotes);
+      }
+  });
+
+  
 });
 // api/notes
 notes.post("/", (req, res) => {
