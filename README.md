@@ -4,6 +4,9 @@
 
 I created this project in order to type notes and have them organized in a nice format. The reason i built this project so that i can create notes that will be stored and saved.=, so i cna search them up later.
 
+live url link (https://rocky-sands-70695.herokuapp.com/)
+GitHub repo link (https://github.com/j-pohahau5/note-taker-pro)
+
 
 ## Table of Contents
 
