@@ -74,6 +74,7 @@ notes.delete("/:id", (req, res) => {
     console.log("delete");
     // giving id the value fo requesting the parameters id
     var id = req.params.id
+    console.log(id)
     // reading the file db.json
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         // if there is an error then console log it
@@ -82,14 +83,10 @@ notes.delete("/:id", (req, res) => {
         } else {
           // letting parsedNoted equal the object of data
           let parsedNotes = JSON.parse(data);
-          // filtering parsedNotes by the notes_id 
+         // filtering parsedNotes by the notes_id 
           parsedNotes = parsedNotes.filter((note) => {
           // returning  if notes_id is equal to id then it is true
-          if(note.note_id === id){
-            return true;
-          } else {
-            return false;
-          }
+          return note.note_id === id;
           });
             // rewriting the file db.json with the deleted notes taken out
           
@@ -105,5 +102,6 @@ notes.delete("/:id", (req, res) => {
         };
     }) 
 })
+
  
 module.exports = notes;
